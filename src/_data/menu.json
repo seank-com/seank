@@ -1,0 +1,14 @@
+[
+    {
+        "label": "About",
+        "url": "/about"
+    },
+    {
+        "label": "Tag List",
+        "url": "/tags"
+    },
+    {
+        "label": "GitHub",
+        "url": "https://github.com/seank-com/seank"
+    }
+]

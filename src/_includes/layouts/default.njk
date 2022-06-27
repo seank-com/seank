@@ -1,0 +1,59 @@
+{%- set metaTitle -%}
+    {%- if not title -%}{{ site.title }} - {{ site.description | safe }}
+    {%- else -%}{{ title | safe }} | {{ site.title }}
+    {%- endif -%}
+{%- endset -%}
+{%- set metaDesc -%}
+    {%- if not description -%}{{ site.description | safe }}
+    {%- else -%}{{ description | safe }}
+    {%- endif -%}
+{%- endset -%}
+{%- set metaKeywords -%}
+    {%- if tags -%}{%- for tag in tags -%}{{ tag }},{%- endfor -%}{%- endif -%}
+    {%- if site.keywords -%}
+        {%- for keyword in site.keywords -%}
+            {{ keyword }}{%- if not loop.last %},{% endif -%}
+        {%- endfor -%}
+    {%- endif -%}
+{%- endset -%}
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ metaTitle }}</title>
+    <meta name="title" content="{{ metaTitle }}">
+    <meta name="description" content="{{ metaDesc }}">
+    <meta name="keywords" content="{{ metaKeywords }}">
+    <meta name="author" content="{{ author.name }}">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ site.url | url }}{{ page.url }}">
+    <link rel="shortcut icon" type="image/png" href="{{ '/assets/img/favicon.png' | url }}">
+    <link rel="apple-touch-icon" href="{{ '/assets/img/favicon.png' | url }}">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/css/uikit.min.css">
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | url }}">
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/js/uikit-icons.min.js"></script>
+</head>	
+<body>
+    <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
+        {% include "partials/navbar.njk" %}
+        <div class="uk-grid" data-uk-grid-margin>
+            <div class="uk-width-3-4@m">
+            {{ content | safe }}
+            </div>
+            <div class="uk-width-1-4@m">
+            {% include "partials/sidebar.njk" %}
+            </div>
+        </div>
+    </div>
+    <script src="{{ '/assets/js/bundle.js' | url }}"></script>
+</body>
+</html>

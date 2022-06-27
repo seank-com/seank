@@ -1,0 +1,19 @@
+---
+layout: default
+eleventyExcludeFromCollections: true
+pagination:
+    data: collections.pagedPostsByDate
+    size: 1
+    alias: paged
+permalink: "{{ paged.year }}/{{ paged.month }}/{% if paged.number > 1 %}{{ paged.number }}/{% endif %}index.html"
+eleventyComputed:
+    title: "Posts from {{ paged.month }}/{{ paged.year }}"
+---
+
+<article class="uk-article">
+    <h1 class="uk-article-title">Posts from {{ paged.month }}/{{ paged.year }}</h1>
+</article>
+{% include "partials/post-grid.njk" %}
+{% if collections.monthList[paged.year][paged.month].count > site.paginate %}
+{% include "partials/paginator.njk" %}
+{% endif %}

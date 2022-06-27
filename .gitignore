@@ -1,0 +1,11 @@
+# All manner of annoying
+.DS_Store
+
+# Dependency directories
+node_modules/
+
+# Docs (build target folder)
+_site/
+
+# dotenv environment variables file
+.env

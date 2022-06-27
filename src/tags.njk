@@ -1,0 +1,14 @@
+---
+layout: default
+title: Tag List
+permalink: "tags/index.html"
+---
+
+<article class="uk-article">
+    <h1 class="uk-article-title">{{ title }}</h1>
+    <p>
+    {%- for name, length in collections.tagList -%}
+    <a href="{{ '/tags/' | url }}{{ name }}" ><span class="uk-label">#{{ name | capitalize }}</span></a>&nbsp;({{ length }})&nbsp;&nbsp;
+    {%- endfor -%}
+    </p>
+</article>

@@ -1,0 +1,13 @@
+<nav class="uk-navbar uk-margin-large-bottom">
+    <ul class="uk-navbar-nav uk-hidden-small">
+        <li><a href="{{ '/' | url }}">{{ site.title }}</a></li>
+        {%- for item in menu -%}
+        <li><a href="{{ item.url | url }}" {% if item.newTab %}target="_blank" rel="noopener" {% endif %}>{{ item.label }}</a></li>
+        {% endfor -%}
+    </ul>
+    <div class="uk-navbar-item">
+        <form id="search" action="{{ '/search' | url }}">
+            <input type="text" id="header-searchbox" name="q" placeholder="Search here ..." class="uk-input uk-form-width-small" >
+        </form>
+    </div>
+</nav>

@@ -1,0 +1,31 @@
+{
+  "name": "seank",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "clean": "rm -rf _site/*",
+    "start": "npm run serve",
+    "serve": "npm run clean && NODE_ENV=development eleventy --serve",
+    "watch": "npm run clean && NODE_ENV=development eleventy --watch",
+    "debug": "npm run clean && NODE_ENV=development eleventy --output=_site",
+    "build": "NODE_ENV=production eleventy --output=docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seank-com/seank.git"
+  },
+  "author": "SeanK",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/seank-com/seank/issues"
+  },
+  "homepage": "https://github.com/seank-com/seank#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^1.0.1",
+    "eleventy-plugin-embed-everything": "^1.14.0",
+    "html-minifier": "^4.0.0",
+    "jshint": "^2.13.4",
+    "luxon": "^1.27.0",
+    "terser": "^5.7.0"
+  }
+}

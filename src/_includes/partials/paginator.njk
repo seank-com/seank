@@ -1,0 +1,9 @@
+<ul class="uk-pagination uk-flex-center">
+    <li>{% if page.url != pagination.href.first %}<a href="{{ pagination.href.first }}"><span uk-icon="chevron-double-left"></span></a>{% else %}<span uk-icon="chevron-double-left"></span>{% endif %}</li>
+    <li>{% if pagination.href.previous %}<a href="{{ pagination.href.previous }}"><span uk-icon="chevron-left"></span></a>{% else %}<span uk-icon="chevron-left"></span>{% endif %}</li>
+{%- for pageEntry in pagination.pages %}
+    <li {% if page.url == pagination.hrefs[ loop.index0 ] %} class="uk-active"{% endif %}><a href="{{ pagination.hrefs[ loop.index0 ] }}">{{ loop.index }}</a></li>
+{%- endfor %}
+    <li>{% if pagination.href.next %}<a href="{{ pagination.href.next }}"><span uk-icon="chevron-right"></span></a>{% else %}<span uk-icon="chevron-right"></span>{% endif %}</li>
+    <li>{% if page.url != pagination.href.last %}<a href="{{ pagination.href.last }}"><span uk-icon="chevron-double-right"></span></a>{% else %}<span uk-icon="chevron-double-right"></span>{% endif %}</li>
+</ul>

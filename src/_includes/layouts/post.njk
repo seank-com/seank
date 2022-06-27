@@ -1,0 +1,21 @@
+---
+layout: default
+---
+
+<article class="uk-article">
+    <h1 class="uk-article-title">{{ title }}</h1>
+    <p class="uk-article-meta">Published on {{ page.date | readableDate }}.</p>
+    <p>
+    {%- if tags -%}
+    {%- for tag in tags -%}
+    <a href="{{ '/tags/' | url }}{{ tag }}" ><span class="uk-label">#{{ tag }}</span></a>&nbsp;
+    {%- endfor -%}
+    {%- endif -%}
+    </p>
+    {%- if thumb -%}
+    <p>
+        <img class="lazy" width="900" height="300" src="{{ '/assets/img/placeholder.svg' | url }}" data-src="{% if thumb %}{{ thumb | url }}{% else %}{{ '/assets/img/no-image.svg' | url }}{% endif %}" alt="">
+    </p>
+    {%- endif -%}
+        {{ content | safe }}
+</article>
