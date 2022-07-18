@@ -15,5 +15,5 @@ eleventyComputed:
 </article>
 {% include "partials/post-grid.njk" %}
 {% if collections.tagList[paged.tagName] > site.paginate %}
-{% include "partials/paginator.njk" %}
+{% include "partials/tagpaginator.njk" %}
 {% endif %}

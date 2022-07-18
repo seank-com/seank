@@ -31,6 +31,10 @@ module.exports = (config) => {
 
   config.addPlugin(require('eleventy-plugin-embed-everything'));
 
+  config.addFilter("debugger", (...args) => {
+    debugger;
+  });
+
   return {
     dir: {
       input: 'src',

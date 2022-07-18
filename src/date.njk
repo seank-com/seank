@@ -15,5 +15,5 @@ eleventyComputed:
 </article>
 {% include "partials/post-grid.njk" %}
 {% if collections.monthList[paged.year][paged.month].count > site.paginate %}
-{% include "partials/paginator.njk" %}
+{% include "partials/datepaginator.njk" %}
 {% endif %}

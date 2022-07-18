@@ -1,0 +1,31 @@
+<ul class="uk-pagination uk-flex-center">
+    {%- for pageEntry in pagination.pages %}
+        {%- if pageEntry.tagName == paged.tagName %}
+            {%- if pageEntry.first == true %}
+            <li><a href="{{ pagination.hrefs[loop.index0] }}"><span uk-icon="chevron-double-left"></span></a></li>
+            {%- endif %}
+            {%- if paged.first == false and pageEntry.number + 1 == paged.number %}
+            <li><a href="{{ pagination.hrefs[loop.index0] }}"><span uk-icon="chevron-left"></span></a></li>
+            {%- endif %}
+        {%- endif %}
+    {%- endfor %}
+
+    {%- for pageEntry in pagination.pages %}
+        {%- if pageEntry.tagName == paged.tagName %}
+            <li {% if paged.number == pageEntry.number %}class="uk-active"{% endif %}>
+            <a href="{{ pagination.hrefs[ loop.index0 ] }}">{{ pageEntry.number }}</a>
+            </li>
+        {%- endif %}
+    {%- endfor %}
+
+    {%- for pageEntry in pagination.pages %}
+        {%- if pageEntry.tagName == paged.tagName %}
+            {%- if paged.last == false and paged.number + 1 == pageEntry.number %}
+            <li><a href="{{ pagination.hrefs[loop.index0] }}"><span uk-icon="chevron-right"></span></a></li>
+            {%- endif %}
+            {%- if pageEntry.last == true %}
+            <li><a href="{{ pagination.hrefs[loop.index0] }}"><span uk-icon="chevron-double-right"></span></a></li>
+            {%- endif %}
+        {%- endif %}
+    {%- endfor %}
+</ul>

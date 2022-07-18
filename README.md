@@ -28,6 +28,16 @@ git push origin gh-pages
 git checkout main
 ```
 
+### To Debug
+
+Drop the following code or similar
+
+```
+{{ { paged: paged, page: page, pagination: pagination } | debugger }}
+```
+
+In VS Code, goto debug tab and press Javascript Debug Terminal the run ```npm start```
+
 ### Github Actions
 
 - [Checkount](https://github.com/marketplace/actions/checkout)
@@ -51,3 +61,4 @@ git checkout main
 * [Eleventy](https://www.11ty.dev/docs/)
 * [vredeburg](https://github.com/dafiulh/vredeburg) [demo](https://vredeburg.netlify.app/)
 * [About custom domains and GitHub Pages](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages)
+* [Debugging Eleventy](https://griffadev.medium.com/tips-for-debugging-in-11ty-aca887d2c66e)

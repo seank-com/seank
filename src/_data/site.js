@@ -5,5 +5,5 @@ module.exports = {
   // your site url without trailing slash
   url: 'https://www.seank.com',
   // how many posts you want to show for each page
-  paginate: 6
+  paginate: 5
 };

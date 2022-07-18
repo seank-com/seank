@@ -7,7 +7,6 @@
     "start": "npm run serve",
     "serve": "npm run clean && NODE_ENV=development eleventy --serve",
     "watch": "npm run clean && NODE_ENV=development eleventy --watch",
-    "debug": "npm run clean && NODE_ENV=development eleventy --output=_site",
     "build": "NODE_ENV=production eleventy --output=docs"
   },
   "repository": {

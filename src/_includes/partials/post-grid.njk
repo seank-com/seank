@@ -4,11 +4,13 @@
         <a href="{{ post.url | url }}">{{ post.data.title }}</a>
     </h1>
     <p class="uk-article-meta">Published on {{ post.data.page.date | readableDate }}.</p>
+    {% if post.data.thumb %}
     <p>
         <a href="{{ post.url | url }}">
-            <img class="lazy" width="900" height="300" src="{{ '/assets/img/placeholder.svg' | url }}" data-src="{% if post.data.thumb %}{{ post.data.thumb | url }}{% else %}{{ '/assets/img/no-image.svg' | url }}{% endif %}" alt="">
+            <img class="lazy" width="900" height="300" src="{{ '/assets/img/placeholder.svg' | url }}" data-src="{{ post.data.thumb | url }}" alt="">
         </a>
     </p>
+    {% endif %}
     <p>{% if post.data.description %}{{ post.data.description }}{% else %}{{ post.templateContent | striptags | truncate(90, true) }}{% endif %}</p>
     <p>
         <a class="uk-button uk-button-primary" href="{{ post.url | url }}">Continue Reading</a>

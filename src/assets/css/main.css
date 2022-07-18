@@ -1,3 +1,7 @@
 .obscure { 
     display: none;
 }
+
+:not(pre)>code {
+    color: inherit;    
+}
