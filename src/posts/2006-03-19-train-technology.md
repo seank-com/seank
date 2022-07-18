@@ -2,6 +2,7 @@
 title: "Train Technology"
 date: 2006-03-19T00:00
 thumb: "2006-03-19_2024.jpg"
+description: "While riding a train from Seattle down to Los Angeles, I was surprised to..."
 tags: 
     - technology
 ---
