@@ -1,0 +1,138 @@
+<!doctype html><html lang="en-us" dir="ltr"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Coding Style | SeanK</title><meta name="title" content="Coding Style | SeanK"><meta name="description" content="Coding Styles can be an almost religious issue among..."><meta name="keywords" content="technology,Husband,Father,Engineer,Geek,Hacker"><meta name="author" content="SeanK"><meta name="robots" content="index, follow"><link rel="canonical" href="https://www.seank.com/2007/12/4/coding-style.html"><link rel="shortcut icon" type="image/png" href="/assets/img/favicon.png"><link rel="apple-touch-icon" href="/assets/img/favicon.png"><link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://fonts.gstatic.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/css/uikit.min.css"><link rel="stylesheet" href="/assets/css/main.css"><script src="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/js/uikit.min.js"></script><script src="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/js/uikit-icons.min.js"></script></head><body><div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom"><nav class="uk-navbar uk-margin-large-bottom"><ul class="uk-navbar-nav uk-hidden-small"><li><a href="/">SeanK</a></li><li><a href="/about">About</a></li><li><a href="/tags">Tag List</a></li><li><a href="https://github.com/seank-com/seank">GitHub</a></li></ul><div class="uk-navbar-item"><form id="search" action="/search"><input type="text" id="header-searchbox" name="q" placeholder="Search here ..." class="uk-input uk-form-width-small"></form></div></nav><div class="uk-grid" data-uk-grid-margin><div class="uk-width-3-4@m"><article class="uk-article"><h1 class="uk-article-title">Coding Style</h1><p class="uk-article-meta">Published on 4 December 2007 12:00 AM.</p><p><a href="/tags/technology"><span class="uk-label">#technology</span></a>&nbsp;</p><p>Coding Styles can be an almost religious issue among programmers and so I begin this post with a little trepidation but as I have been asked to document my particular coding style for my former team before I move on to a new team next week, I thought it would be best to do it as a post to my blog. In the over 20 years that I have been programming my style has only changed a few times. The first programming language I was ever formally taught was PASCAL so the issue of where to put curly braces has always been settled in my mind and I won't be discussing that here. What I do want to discuss is code flow. All through high school, college and my first several jobs in the computing industry I used a code flow like the following sample.</p><pre><code>HRESULT DoBazThroughFooAndBar()
+{
+    IFooThings* pFooThings = NULL;
+    HRESULT hr = GetFooThings(&amp;pFooThings);
+    if (SUCCEEDED(hr))
+    {
+        IBarThings* pBarThings = NULL;
+        hr = pFooThings-&gt;GetBarThings(&amp;pBarThings);
+        if (SUCCEEDED(hr))
+        {
+            IBazThings* pBazThings = NULL;
+            hr = pBarThings-&gt;GetBazThings(&amp;pBazThings);
+            if (SUCCEEDED(hr))
+            {
+                hr = pBazThings-&gt;DoSomethingProfound();
+                pBazThings-&gt;Release();
+            }
+            pBarThings-&gt;Release():
+        }
+        pBarThings-&gt;Release();
+    }
+    return hr;
+}
+</code></pre><p>This type of code flow should be very familiar to every developer out there. The only disadvantage to using this type of style is that complex functions will typically nest to absurd levels and that can make the code very difficult to read. The first change to my coding style happened when I joined Microsoft back in 1994. I came to work on the MFC team. Unlike most development teams at the time, MFC had the distinction of shipping not only binaries, but the source as well. Consequently, the team a developed very rigorous style guidelines well before I arrived. These guidelines abhorred the kind of nesting demonstrated above and instead opted for a code flow like the following sample.</p><pre><code>HRESULT DoBazThroughFooAndBar()
+{
+    CComPtr&lt;IFooThings&gt; pFooThings;
+    HRESULT hr = GetFooThings(&amp;pFooThings);
+    if (FAILED(hr))
+        return hr;
+    
+    CComPtr&lt;IBarThings&gt; pBarThings;
+    hr = pFooThings-&gt;GetBarThings(&amp;pBarThings);
+    if (FAILED(hr))
+        return hr;
+    
+    CComPtr&lt;IBazThings&gt; pBazThings;
+    hr = pBarThings-&gt;GetBazThings(&amp;pBazThings);
+    if (FAILED(hr))
+        return hr;
+    
+    hr = pBazThings-&gt;DoSomethingProfound();
+    return hr;
+}
+</code></pre><p>The thinking here was that since MFC was a class library we can assume that the programmer is using C++. So any type that needs to be cleaned up after being used should be wrapped in a class so it's destructor can do the cleanup. This made the code much more readable. However, it had a few disadvantages. First, you often needed to implement one off classes to wrap types that needed to be cleaned up or alternately spend time looking for pre-existing wrappers for HANDLEs, HWNDs, HBITMAPs, not to mention memory that needed to be freed using delete, free, HeapFree or CoTaskMemFree. Because this isn't always practical you would often end up with one or two types that were not wrapped and needed to be cleaned up inside of each FAILED case. This became a problem when code analysis tools hit the scene. Around 2002, it became vogue at Microsoft for the test team to measure the success of their automated tests by using code coverage tools to analyzed the percentage of code that was exercised. I remember one tester being particularly frustrated with me because he couldn't get better than 40% of my covered because of all the error handling code to handle errors that almost never happened. The other disadvantage came when you needed to debug your application or instrument it with tracing since it was virtually guaranteed that you would have way more than one exit point within the function. So if you had a macro for tracing that needed to be placed at the beginning of every function and another one at the end, you would need to invoke that macro at every return. Consequently, this style was not popular outside of MFC. Instead most teams opted for a code flow like the following sample.</p><pre><code>HRESULT DoBazThroughFooAndBar()
+{
+    IFooThings* pFooThings = NULL;
+    HRESULT hr = GetFooThings(&amp;pFooThings);
+    if (FAILED(hr))
+        goto Cleanup;
+
+    IBarThings* pBarThings = NULL;
+    hr = pFooThings-&gt;GetBarThings(&amp;pBarThings);
+    if (FAILED(hr))
+        goto Cleanup;
+
+    IBazThings* pBazThings = NULL;
+    hr = pBarThings-&gt;GetBazThings(&amp;pBazThings);
+    if (FAILED(hr))
+        goto Cleanup;
+
+    hr = pBazThings-&gt;DoSomethingProfound();
+
+Cleanup:
+    if (pBazThings != NULL)
+        pBazThings-&gt;Release();
+    
+    if (pBarThings != NULL)
+        pBarThings-&gt;Release():
+    
+    if (pBarThings != NULL)
+        pBarThings-&gt;Release();
+
+    return hr;
+}
+</code></pre><p>Those who practice the art of programming and can trace their methodological lineage back to the school of the great <a href="http://en.wikipedia.org/wiki/Edsger_W._Dijkstra">Edsger W. Dijkstra</a> will immediately chaff at the thought of using gotos in their code. Consequently, many have sought other code flows that solve the same problems without the gotos. One in particular looks like the following sample.</p><pre><code>HRESULT DoBazThroughFooAndBar()
+{
+    IFooThings* pFooThings = NULL;
+    IBarThings* pBarThings = NULL;
+    IBazThings* pBazThings = NULL;
+    
+    HRESULT hr = S_OK;
+    do
+    {
+        hr = GetFooThings(&amp;pFooThings);
+        if (FAILED(hr))
+            break;
+
+        hr = pFooThings-&gt;GetBarThings(&amp;pBarThings);
+        if (FAILED(hr))
+            break;
+
+        hr = pBarThings-&gt;GetBazThings(&amp;pBazThings);
+        if (FAILED(hr))
+            break;
+
+        hr = pBazThings-&gt;DoSomethingProfound();
+    }
+    while(false);
+    
+    if (pBazThings != NULL)
+        pBazThings-&gt;Release();
+
+    if (pBarThings != NULL)
+        pBarThings-&gt;Release():
+
+    if (pBarThings != NULL)
+        pBarThings-&gt;Release();
+
+    return hr;
+}
+</code></pre><p>While it very cleverly coaxes a goto out of a loop, I dislike it for exactly that reason. A loop should be used for looping, not faking a goto semantic. Since code is read many more times than it is written, I believe a programmer should strive to make the code as obvious and readable as possible. Using the above trick may confuse the casual observer and risks making it hard to maintain even for the seasoned developer. Notice particularly that variables that require cleanup must be declared outside the loop. I finally converted (see I told you it was religious) over to the style I use today after I realized that it addresses all the issues above. Not only that but using my style will get you near 100% code coverage as the successful execution path hits every line of code. Here is a sample using my current style.</p><pre><code>HRESULT DoBazThroughFooAndBar()
+{
+   IFooThings* pFooThings = NULL;
+   HRESULT hr = GetFooThings(&amp;pFooThings);
+   
+   IBarThings* pBarThings = NULL;
+   if (SUCCEEDED(hr))
+       hr = pFooThings-&gt;GetBarThings(&amp;pBarThings);
+
+   IBazThings* pBazThings = NULL;
+   if (SUCCEEDED(hr))
+       hr = pBarThings-&gt;GetBazThings(&amp;pBazThings);
+
+   if (SUCCEEDED(hr))
+       hr = pBazThings-&gt;DoSomethingProfound();
+
+   if (pBazThings != NULL)
+       pBazThings-&gt;Release();
+
+   if (pBarThings != NULL)
+       pBarThings-&gt;Release();
+
+   if (pBarThings != NULL)
+       pBarThings-&gt;Release();
+       
+   return hr;
+}
+</code></pre></article></div><div class="uk-width-1-4@m"><div class="uk-panel uk-panel-box uk-text-center"><img class="uk-border-circle" width="120" height="120" src="https://avatars.githubusercontent.com/u/1326518?v=4" alt="Author avatar"><h3>SeanK</h3><p>I hack all the things</p></div><div class="uk-panel uk-margin"><h3 class="uk-panel-title">Archives</h3><ul uk-accordion><li><a class="uk-accordion-title" href="#">2006</a><div class="uk-accordion-content"><ul class="uk-list uk-list-line"><li><a href="/2006/3">March (2)</a></li><li><a href="/2006/4">April (5)</a></li><li><a href="/2006/5">May (6)</a></li><li><a href="/2006/6">June (2)</a></li><li><a href="/2006/7">July (4)</a></li><li><a href="/2006/9">September (7)</a></li><li><a href="/2006/10">October (4)</a></li><li><a href="/2006/11">November (1)</a></li><li><a href="/2006/12">December (1)</a></li></ul></div></li><li><a class="uk-accordion-title" href="#">2007</a><div class="uk-accordion-content"><ul class="uk-list uk-list-line"><li><a href="/2007/1">January (1)</a></li><li><a href="/2007/3">March (5)</a></li><li><a href="/2007/4">April (4)</a></li><li><a href="/2007/5">May (1)</a></li><li><a href="/2007/6">June (3)</a></li><li><a href="/2007/8">August (2)</a></li><li><a href="/2007/9">September (2)</a></li><li><a href="/2007/12">December (2)</a></li></ul></div></li></ul></div><div class="uk-panel uk-margin"><h3 class="uk-panel-title">Social Links</h3><a href="https://github.com/seank-com"><span uk-icon="github"></span></a> <a href="https://www.facebook.com/therenaissancehacker"><span uk-icon="facebook"></span></a> <a href="https://www.instagram.com/seank_com/"><span uk-icon="instagram"></span></a> <a href="https://www.linkedin.com/in/sean-d-kelly/"><span uk-icon="linkedin"></span></a> <a href="https://twitter.com/seank"><span uk-icon="twitter"></span></a> <a href="https://www.youtube.com/channel/UC_Sz_dtg8TYMChxmR1qgVzw"><span uk-icon="youtube"></span></a></div></div></div></div><script src="/assets/js/bundle.js"></script></body></html>
