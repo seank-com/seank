@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "clean": "rm -rf _site/*",
-    "start": "npm run serve",
-    "serve": "npm run clean && NODE_ENV=development eleventy --serve",
-    "watch": "npm run clean && NODE_ENV=development eleventy --watch",
-    "build": "NODE_ENV=production eleventy --output=docs"
+  "clean": "node clean.js",
+  "start": "npm run serve",
+  "serve": "node eleventy-run.js --serve",
+  "watch": "node eleventy-run.js --watch",
+  "build": "node eleventy-run.js --prod --output=docs"
   },
   "repository": {
     "type": "git",
