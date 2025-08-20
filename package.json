@@ -7,7 +7,8 @@
     "start": "npm run serve",
     "serve": "node eleventy-run.js --serve",
     "watch": "node eleventy-run.js --watch",
-    "build": "node eleventy-run.js --prod --output=docs"
+    "build": "node eleventy-run.js --prod --output=docs",
+    "lint": "jshint lib src .eleventy.js eleventy-run.js clean.js"
   },
   "repository": {
     "type": "git",

@@ -1,3 +1,6 @@
+(() => {
+  "use strict";
+
 /*
 Search for posts with keyword given in the parameter "q"
 Only run on search page ("/search/")
@@ -110,3 +113,5 @@ function debounce(fn, wait) {
     });
   };
 }
+
+})();

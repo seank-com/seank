@@ -41,9 +41,7 @@ module.exports = (config) => {
 
   config.addPlugin(require('eleventy-plugin-embed-everything'));
 
-  config.addFilter("debugger", (...args) => {
-    debugger;
-  });
+  // Removed legacy debugger filter to keep lint clean.
 
   return {
     dir: {

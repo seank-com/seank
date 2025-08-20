@@ -1,4 +1,7 @@
-/*
+(() => {
+  "use strict";
+
+  /*
 Hide header on scroll down & show on scroll up
 
 const header = document.getElementById('header');
@@ -41,11 +44,12 @@ Lazy load images
 
 const lazyImages = document.getElementsByClassName('lazy');
 
-document.addEventListener('DOMContentLoaded', () => {
-  [...lazyImages].forEach((elem) => {
-    const originalImage = elem.dataset.src;
+  document.addEventListener('DOMContentLoaded', () => {
+    [...lazyImages].forEach((elem) => {
+      const originalImage = elem.dataset.src;
 
-    elem.setAttribute('src', originalImage);
-    elem.removeAttribute('data-src');
-  });
-}, false);
+      elem.setAttribute('src', originalImage);
+      elem.removeAttribute('data-src');
+    });
+  }, false);
+})();
