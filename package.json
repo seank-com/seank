@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-  "clean": "node clean.js",
-  "start": "npm run serve",
-  "serve": "node eleventy-run.js --serve",
-  "watch": "node eleventy-run.js --watch",
-  "build": "node eleventy-run.js --prod --output=docs"
+    "clean": "node clean.js",
+    "start": "npm run serve",
+    "serve": "node eleventy-run.js --serve",
+    "watch": "node eleventy-run.js --watch",
+    "build": "node eleventy-run.js --prod --output=docs"
   },
   "repository": {
     "type": "git",
@@ -20,11 +20,11 @@
   },
   "homepage": "https://github.com/seank-com/seank#readme",
   "devDependencies": {
-    "@11ty/eleventy": "^1.0.1",
+    "@11ty/eleventy": "^3.1.2",
     "eleventy-plugin-embed-everything": "^1.14.0",
-    "html-minifier": "^4.0.0",
+    "html-minifier-terser": "^7.2.0",
     "jshint": "^2.13.4",
-    "luxon": "^1.27.0",
+    "luxon": "^3.7.1",
     "terser": "^5.7.0"
   }
 }
