@@ -22,6 +22,16 @@ module.exports = (config) => {
 
   config.addTransform('minifyHtml', require('./lib/transforms/minifyHtml'));
 
+  // Lightweight post-render transform: rewrite <img src="img/..."> to
+  // <img src="/assets/img/..."> so authors can use img/ relative paths.
+  config.addTransform('rewriteImgPaths', (content, outputPath) => {
+    if (outputPath && outputPath.endsWith('.html') && content.includes('<img')) {
+      return content.replace(/(<img\s+[^>]*src=["'])(img\/[^"'>]+)(["'][^>]*>)/gi,
+        (m, pre, rel, post) => `${pre}/assets/${rel}${post}`);
+    }
+    return content;
+  });
+
   config.addCollection('posts', require('./lib/collections/posts'));
   config.addCollection('tagList', require('./lib/collections/tagList'));
   config.addCollection('monthList', require('./lib/collections/monthList'));
