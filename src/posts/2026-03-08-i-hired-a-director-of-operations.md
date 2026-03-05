@@ -6,6 +6,7 @@ tags:
     - ai
     - automation
     - productivity
+thumb: "2026-03-08-marina-desk.jpg"
 ---
 
 A few months ago I hired a Director of Operations.
