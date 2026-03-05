@@ -78,4 +78,4 @@ Those are the questions this series is about.
 
 ---
 
-*Marina helped write this post. That feels like the right disclosure to make.*
+*Yes, Marina helped me write this post.*
