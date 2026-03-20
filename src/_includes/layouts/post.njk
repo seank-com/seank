@@ -12,10 +12,5 @@ layout: default
     {%- endfor -%}
     {%- endif -%}
     </p>
-    {%- if thumb -%}
-    <p>
-        <img class="lazy" width="900" height="300" src="{{ '/assets/img/placeholder.svg' | url }}" data-src="{% if thumb %}{{ thumb | url }}{% else %}{{ '/assets/img/no-image.svg' | url }}{% endif %}" alt="">
-    </p>
-    {%- endif -%}
         {{ content | safe }}
 </article>

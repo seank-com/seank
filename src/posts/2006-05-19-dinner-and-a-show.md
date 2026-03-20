@@ -9,5 +9,7 @@ tags:
 
 Dads @ Microsoft organized their first movie night. We all gathered in a larger meeting room, ate pizza and watched Chicken Little. A good time was had by all.
 
-![2006-03-11_1454](/assets/img/2006-05-19_1709.jpg)
+![2006-05-19_1708](img/2006-05-19_1708.jpg)
+
+![2006-03-11_1454](img/2006-05-19_1709.jpg)
 

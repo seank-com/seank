@@ -9,7 +9,7 @@ module.exports = (config) => {
   config.addPassthroughCopy('src/assets/css/**/*');
   config.addPassthroughCopy('src/assets/img/**/*');
   config.addPassthroughCopy('src/assets/other/**/*');
-  config.addPassthroughCopy({ 'src/posts/img/**/*': 'assets/img/' });
+  config.addPassthroughCopy({ 'src/posts/img/**/*.{svg,gif,jpg,png}': 'assets/img/' });
 
   config.addWatchTarget("src/assets/js/");
 
