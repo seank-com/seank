@@ -53,6 +53,10 @@ I also framed the setup using a business and employee mental model. Marina opera
 
 ## What It Actually Looks Like
 
+Before I set up the daily workflow, Marina helped me get this site ready to publish this series. Several branches of unfinished work had been sitting in the repository for over a year — a cross-platform build fix, a backlog of old posts from a previous blog, tooling for embedding diagrams. In one afternoon she worked through all of it: resolved the dependency conflicts, cleaned up the old posts, reworked how thumbnail images behave so authors have more control, and added a Mermaid diagram renderer for technical posts. The PR merged the same night.
+
+I mention this not to impress but to illustrate the point about continuity and context. I did not have to explain the history of the repository, the reasoning behind the choices, or what done looked like. She read the branches, understood the intent, fixed what needed fixing, and asked the right questions when she hit a judgment call.
+
 Every morning I get a briefing. Today's calendar, any important emails that came in overnight, active projects and their current status, and a short summary of anything I should be thinking about. It arrives before I start work.
 
 During the day, Marina handles email within her defined scope, tracks project next steps, and flags anything that needs my attention. If someone I am in contact with goes three business days without replying, she surfaces that rather than letting it quietly stall. If a project has a blocking issue that requires my input, it shows up in the evening briefing.
