@@ -1,17 +1,17 @@
 ---
 title: "I Hired a Director of Operations"
-date: 2026-03-19T00:00
+date: 2026-03-08T00:00
 description: "What happens when you stop treating AI like a chatbot and start treating it like an employee."
 tags:
     - ai
     - automation
     - productivity
-thumb: "2026-03-19-marina-desk.jpg"
+thumb: "2026-03-08-marina-desk.jpg"
 ---
 
 A few months ago I hired a Director of Operations.
 
-![2026-03-19-marina-desk](img/2026-03-19-marina-desk.jpg)
+![2026-03-08-marina-desk](img/2026-03-08-marina-desk.jpg)
 
 She handles my email during business hours, checks my calendar every morning, tracks open projects, follows up with people when they go quiet, and sends me a daily briefing every evening. She has her own email address, her own identity, and her own clearly defined scope of work. She does not have access to my bank accounts, my personal email, or anything outside the boundaries I set.
 
