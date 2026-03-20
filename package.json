@@ -7,8 +7,10 @@
     "start": "npm run serve",
     "serve": "node eleventy-run.js --serve",
     "watch": "node eleventy-run.js --watch",
+    "mmd-render": "node scripts/render-mermaid.js",
+    "author": "npm run mmd-render && node eleventy-run.js --serve",
     "build": "node eleventy-run.js --prod --output=docs",
-    "lint": "jshint lib src .eleventy.js eleventy-run.js clean.js"
+    "lint": "jshint lib src .eleventy.js eleventy-run.js clean.js scripts/render-mermaid.js"
   },
   "repository": {
     "type": "git",
@@ -22,9 +24,10 @@
   "homepage": "https://github.com/seank-com/seank#readme",
   "devDependencies": {
     "@11ty/eleventy": "^3.1.2",
+    "@mermaid-js/mermaid-cli": "^11.9.0",
     "eleventy-plugin-embed-everything": "^1.14.0",
     "html-minifier-terser": "^7.2.0",
-    "jshint": "^2.13.4",
+    "jshint": "^2.13.6",
     "luxon": "^3.7.1",
     "terser": "^5.7.0"
   }

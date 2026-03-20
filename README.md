@@ -16,13 +16,14 @@ Personal blog built with [Eleventy](https://www.11ty.dev/) v3.
 
 ### Available Scripts
 
-| Script | Purpose |
-| ------ | ------- |
-| `npm run serve` | Run Eleventy in watch/serve mode (development). |
-| `npm run watch` | Watch & rebuild without the local web server. |
-| `npm run build` | Production build (sets `NODE_ENV=production`) -> `_site` then copies to `docs` for Pages. |
-| `npm run clean` | Remove previous build output directories (`_site`, `docs`). |
-| `npm run lint` | Run JSHint across config, library, and source JS. Zero warnings policy. |
+| Script               | Purpose |
+| -------------------- | ------- |
+| `npm run serve`      | Run Eleventy in watch/serve mode (development).                                           |
+| `npm run watch`      | Watch & rebuild without the local web server.                                             |
+| `npm run build`      | Production build (sets `NODE_ENV=production`) -> `_site` then copies to `docs` for Pages. |
+| `npm run mmd-render` | Render img/*.mmd as .svg                                                                  |
+| `npm run clean`      | Remove previous build output directories (`_site`, `docs`).                               |
+| `npm run lint`       | Run JSHint across config, library, and source JS. Zero warnings policy.                   |
 
 ## Node Version Management (nvm)
 
