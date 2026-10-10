@@ -1,6 +1,6 @@
 # Project Collaboration Contract (Assistant Guidance)
 
-Location: `.github/copilot-instructions.md` (kept out of published site via `.eleventyignore`).
+Location: `AGENTS.md` (kept out of published site via `.eleventyignore`).
 
 ## Dependency and Library Practices
 - Use `npm install/uninstall --save-dev` (or `--save`)—avoid manual `package.json` edits.

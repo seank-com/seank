@@ -97,7 +97,7 @@ A post‑render transform rewrites `<img src="img/...">` to `/assets/img/...` so
 
 ## Lint & Quality Gates
 
-Run `npm run lint` before committing. The repo treats warnings as failures: fix or very narrowly justify with an inline JSHint directive comment. See the collaboration contract in `.github/copilot-instructions.md` for the full checklist (lint, audit, build) prior to rebasing & fast‑forwarding to `main`.
+Run `npm run lint` before committing. The repo treats warnings as failures: fix or very narrowly justify with an inline JSHint directive comment. See the collaboration contract in `AGENTS.md` for the full checklist (lint, audit, build) prior to rebasing & fast‑forwarding to `main`.
 
 ## CI / CD
 
@@ -147,7 +147,7 @@ Templates / Data: Add temporary output in Nunjucks, e.g.:
 - Linear history: rebase feature branches on `main` before fast‑forward merge.
 - Security: keep `npm audit` clean (or document any unavoidable exception).
 - Production build uses `NODE_ENV=production` (set by the wrapper script).
-- See `.github/copilot-instructions.md` for detailed collaboration contract.
+- See `AGENTS.md` for detailed collaboration contract.
 
 ## Troubleshooting
 

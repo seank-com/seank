@@ -6,6 +6,7 @@ node_modules/
 
 # Docs (build target folder)
 _site/
+docs/
 
 # dotenv environment variables file
 .env
